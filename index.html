@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>MUSIC PLAYER VER 2</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' href="styles.css">
+    <!-- set Icon on Tab of chrome-->
+    <link rel="icon" href="https://sollohubmusic.com/wp-content/uploads/2016/12/favicon.png" type="image/gif" sizes="16x16">
+    <!-- Icon and font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+</head>
+<body>
+    <div class="player">
+        <!--Dashboard-->
+        <div class="dashboard">
+            <!-- Menu-->
+            <div class="menuBtn">
+                <div class="line top"></div>
+                <div class="line mid"></div>
+                <div class="line bot"></div>
+            </div>
+            <!-- Favourite Song | bài hát yêu thích được lưu--> 
+            <div class="favouriteList">
+
+            </div>
+
+            <!-- Header -->
+            <header>
+                <h4>Now playing</h4>
+                <!-- marquee = hiệu ứng chạy chữ -các hướng đc xử lý qua javascript -->                
+                <marquee>String 57th & 9th</marquee>
+            </header>
+
+            <!-- CD -->
+            <div class="cd" id='arc-slider'>
+                <div class="circle">
+                    <div class="mask full">
+                        <div class="fill"></div>
+                    </div>
+                    <div class="mask half">
+                        <div class="fill"></div>
+                </div>
+            </div>
+            <div class="cd-thumb" ></div>
+        </div>
+
+        <!-- progress bar -->
+        <div class="progressRange">
+            <!-- khi hover vao thanh bar se show thoi gian tien trinh chay nhac dang o dau-->
+            <div class="rangeValue" id='rangeValue'>00:00</div>
+            <input id='progress' class="progress" type='range' value="0" step="1" min="0" max="100">
+        </div>
+        <div class="time">
+            <span class="startTime">0:00</span>
+            <span class="endTime"></span>
+        </div>
+
+        <!-- all button Control -->
+        <div class="control">
+            <div class="btn btn-repeat">
+                <i class="fas fa-redo"></i>
+            </div>
+            <div class="btn btn-prev">
+                <i class="fas fa-step-backward"></i>
+            </div>
+            <div class="btn btn-toggle-play">
+                <i class="fas fa-pause icon-pause"></i>
+                <i class="fas fa-play icon-play"></i>
+            </div>
+            <div class="btn btn-next ">
+                <i class="fas fa-step-forward"></i>
+            </div>
+            <div class="btn btn-random">
+                <i class="fas fa-random"></i>
+            </div>
+        </div>
+        
+           <!-- Volume Adjustment -->
+           <div class='volume'>
+            <div class='btn btn-volume'>
+            </div>
+            <div class='volumeRange'>
+              <input type='range' id='volumeAdjust' class='volumeAdjust' min='0' max='100' value='0' step='1'/>
+            </div>
+          </div>
+
+        <audio id="audio" src=""></audio>
+    </div>
+
+    <!-- PlayeList | Xử lý thông qua javascript -->
+    <div class="playlist">
+        
+    </div>
+    
+</body>
+<!-- Javascript -->
+<script src='script.js'></script>
+</html>
+

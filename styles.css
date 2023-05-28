@@ -1,0 +1,486 @@
+/* khai bao bien cho css :root | 
+ - cách này ko cần viết nhiều lần giống nhau 
+ - trong mỗi class có cùng thuộc tính, chỉ gọi biến đã gán css 
+ - có thể lấy các biến trong javascript
+   */
+   :root {
+    --primary-color: #e94873;
+    --text-color: #333;
+    --cd-dim: 150px;
+    --thumb-dim: 140px;
+    --c-width: 5px;
+  }
+  
+  * {
+    padding: 0;
+    margin: 0;
+    box-sizing: inherit;
+  }
+  
+  body {
+    background-color: #f5f5f5;
+  }
+  
+  html {
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+  }
+  
+  .player {
+    position: relative;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+  
+  .player .icon-pause {
+    display: none;
+  }
+  
+  .player.playing .icon-pause {
+    display: inline-block;
+  }
+  
+  .player.playing .icon-play {
+    display: none;
+  }
+  
+  .dashboard {
+    padding: 16px 16px 14px;
+    background-color:#f3f3f3;
+    position: fixed;
+    
+    top: 0;
+    width: 100%;
+    max-width: 480px;
+    border-bottom: 1px solid #ebebeb;
+  }
+  /* MENU DESIGN */
+  .menuBtn {
+    margin-top:10px;
+    position:absolute;
+    background-color:#ecf0f1;
+    padding: 2px;
+    width: 42px;
+    height:42px;
+    border-radius:50%;
+    transform:scale(0.8);
+    z-index: 1;
+    
+
+}
+  .line {
+      background-color:rgb(247, 240, 240);
+      box-shadow: 1px 1px 1px #817272;
+      position:absolute;
+      width:70%;
+      height:3px;
+      border-radius:4px;
+      transition:all cubic-bezier(0.26,0.1,0.27,1.55) 0.3s
+
+  }
+  .line.top{
+      top:28%;
+      left:18%;
+
+  }
+  .line.mid{
+    top:48%;
+    left:18%;
+    
+  }
+  .line.bot{
+    top: 66% ;
+    left:18%;
+    
+  }
+  .menuBtn:hover, .menuBtn:focus{
+      cursor:pointer;
+      background-color:#bdc3c7;
+
+  }
+  .menuBtn.close .top{
+      transform: rotate(45deg);
+      top:43% !important;
+  }
+  .menuBtn.close .mid {
+      transform: rotate(-45deg);
+      top:45% !important;
+  }
+  .menuBtn.close .bot{
+      display:none;
+  }
+  /* HEADER */
+  header {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  header h4 {
+    color: var(--primary-color);
+    font-size: 12px;
+  }
+  
+  header marquee {
+    color: var(--text-color);
+    font-size: 18px;
+    width:300px;
+   
+  }
+  
+  /* CD */
+  .cd {
+    display: flex;
+    margin: auto;
+    
+    /* flex-direction: row; */
+    width: var(--cd-dim);
+    height: var(--cd-dim);
+    border-radius:50%;background-color:rgba(143, 136, 136, 0.137);
+    
+  }
+  .cd .circle .mask , 
+  .cd .circle .fill {
+    width: var(--cd-dim);
+    height: var(--cd-dim);
+    border-radius: 50%;
+    position: absolute;
+  }
+  .cd .circle .mask{
+    /*take the half right*/
+    clip: rect(0px, var(--cd-dim), var(--cd-dim),calc(var(--cd-dim)/2));/*take the half right*/
+
+  }
+
+  .cd .circle .mask .fill{
+    /*take the half left*/
+    clip: rect(0px,calc(var(--cd-dim)/2), var(--cd-dim), 0px);/*take the half left*/
+    background-color: #fd79a8;
+  }
+
+  .cd .circle .mask.full,
+  .cd .circle .mask .fill{
+  transform: rotate(0deg);
+  }
+
+  .cd-thumb {
+    position: absolute;
+    width: var(--thumb-dim);
+    height: var(--thumb-dim);
+    margin-left: var(--c-width);
+    margin-top: var(--c-width);
+    border-radius: 50%;
+    background-color: #333;
+    background-size: cover;
+    z-index: 10;
+  }
+  /* CONTROL */
+  .control {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 18px 0 0 0;
+  }
+  
+ .btn {
+    color: #666;
+    padding: 18px;
+    font-size: 18px;
+  }
+  .btn:hover {
+    cursor: pointer;
+  }
+  .btn.active {
+    color: var(--primary-color);
+  }
+  
+  .btn-toggle-play {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    font-size: 24px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--primary-color);
+  }
+  .btn-volume{
+    margin-left: 18px;
+  }
+  .progressRange {
+    position: relative;
+    --c: none;
+  }
+  .progressRange:hover{
+    --c: block;
+  }
+  .progress {
+    width: 100%;
+    margin-top:40px;
+    -webkit-appearance: none;
+    height: 5px;
+    background: linear-gradient(90deg, rgb(9, 241, 21) 0%, rgb(214, 214, 214) 0%);
+    border-radius: 4px;
+    outline: none;
+    opacity: 1;
+    -webkit-transition: 0.2s;
+    transition: opacity 0.2s;
+    /*
+    box-shadow: 0px 1px 1px 1px rgb(182, 172, 172);
+    */
+ 
+  }
+  
+  .progress::-webkit-slider-thumb {
+    display: var(--c);
+    -webkit-appearance: none;
+    appearance: none;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    box-shadow: 0 0 4px 0 rgba(0,0,0, 1);
+    background-color: var(--primary-color);
+    cursor: pointer;
+  }
+  .progress::-moz-range-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 13px;
+    height: 13px; 
+    border-radius: 6px;
+    box-shadow: 0 0 4px 0 rgba(0,0,0, 1);
+    background-color: var(--primary-color);
+    cursor: pointer;
+  }
+  .progress:hover{
+    opacity: 1;
+    cursor: pointer;
+  
+  }
+  /* .progress:hover ~ #rangeValue{
+    display: block ;
+  } */
+  .rangeValue{
+    width: 50px; 
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    display: var(--c);
+    background:#fd79a8;
+    color: #fff;
+    font-size: 12px;
+    position: absolute;
+    margin-top:2px;
+    left: 2%;
+     transform: translate(-50%, 0); 
+    border-radius: 6px;
+  }
+  
+  .rangeValue:before{
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-top: 10px solid #fd79a8;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    margin-top: -1px;
+  }
+  /* Time indicate */
+  .time {
+    display: flex;
+    justify-content:space-between;
+
+  }
+
+  /* PLAYLIST */
+ .playlist {
+    margin-top: 460px;
+    padding: 12px;
+  }
+  
+  .song {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    background-color: #fff;
+    padding: 8px 16px;
+    border-radius: 5px;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .song.active {
+    background-color: var(--primary-color);
+  }
+  
+  .song:active {
+    opacity: 0.8;
+  }
+  .song:hover{
+    cursor: pointer;
+  }
+  .song.active .option,
+  .song.active .author,
+  .song.active .title {
+    color: #fff;
+  }
+  
+  .song .thumb {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-size: cover;
+    margin: 0 8px;
+  }
+  
+  .song .body {
+    flex: 1;
+    padding: 0 16px;
+  }
+  
+  .song .title {
+    font-size: 18px;
+    color: var(--text-color);
+  }
+  
+  .song .author {
+    font-size: 12px;
+    color: #999;
+  }
+  
+  .song .option {
+    padding: 16px 8px;
+    color: #999;
+    font-size: 18px;
+  }
+  
+  /* Volume adjustment */
+  .volume {
+    display: flex;
+  }
+  .volumeAdjust{
+    width: 90%;
+    margin-top:30px;
+    -webkit-appearance: none;
+    height: 4px;
+    background: linear-gradient(90deg, rgb(75, 36, 173) 0%, rgb(214, 214, 214) 0%);
+    border-radius: 1px;
+    outline: none;
+    opacity: 0.8;
+    -webkit-transition: 0.2s;
+    transition: opacity 0.2s;
+    /* box-shadow: 0px 1px 1px 1px rgb(182, 172, 172); */
+ 
+  }
+  .volumeAdjust::-webkit-slider-thumb {
+    display: var(--c1);
+    -webkit-appearance: none;
+    appearance: none;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    box-shadow: 0 0 4px 0 rgba(0,0,0, 1);
+    background-color: var(--primary-color);
+    cursor: pointer;
+  }
+  .volumeAdjust::-moz-range-thumb {
+    display: var(--c1);
+    -webkit-appearance: none;
+    appearance: none;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    box-shadow: 0 0 4px 0 rgba(0,0,0, 1);
+    background-color: var(--primary-color);
+    cursor: pointer;
+  }
+  .volumeAdjust:hover{
+    opacity: 1;
+    padding: 2px 0;
+    cursor: pointer;
+  
+  }
+  .volumeRange {
+    --c1: none
+  }
+  .volumeRange:hover {
+    --c1:block;
+
+  }
+ .favourite.active{
+   color:rgb(235, 10, 10);
+ }
+
+ /* Favourite List */
+
+ .favouriteList {
+    font-size:15px;
+    z-index: 11;
+    padding:5px;
+    font-style: oblique;
+    position:absolute;
+    font-weight: 500;
+    border-radius:6px;
+    width: 70%;
+    margin: 55px 15px auto 8px;
+    max-height:30%;
+    overflow:auto;
+    box-shadow: 2px 2px 5px #817272;
+    text-indent: 6px;
+ 
+    display:none;
+    border: 1px solid rgb(174, 173, 179);
+ 
+ }
+
+ .favouriteList div{
+    padding: 3px;
+  }
+  .favouriteList div:hover{
+   
+    cursor:pointer;
+    background-color:rgb(49, 214, 63);
+   }
+   .favouriteList.active{
+     display:block !important;
+    animation:fadeIn 1s both;
+   }
+   @-webkit-keyframes fadeIn{
+    0%{ opacity:0 ;
+      background-color:rgb(248, 240, 247);
+      transform:translateY((-50px))
+    }
+      50%{ opacity:0.6;
+        background-color:rgb(223, 211, 217);
+        transform:translateY((-30px))
+      }
+      100%{ opacity:0.7;
+        background-color:rgb(216, 200, 215);
+      transform:translateY((0px))
+    }
+   }
+   @keyframes fadeIn{
+    0%{ opacity:0 ;
+      background-color:rgb(248, 240, 247);
+      transform:translateY((-50px))
+    }
+      50%{ opacity:0.6;
+        background-color:rgb(223, 211, 217);
+        transform:translateY((-30px))
+      }
+      100%{ opacity:0.7;
+        background-color:rgb(216, 200, 215);
+      transform:translateY((0px))
+    }
+   }
+   .fav img{
+     margin-bottom: -2px;
+     padding-right:2px;
+     width:18px;
+     height:18px;
+     
+  
+   }
